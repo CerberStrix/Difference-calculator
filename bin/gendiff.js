@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-import program from "commander";
+import program from 'commander';
 
-import { getObjectFromPath, getDiff } from "./utils.js";
-
+import { getObjectFromPath, getDiff } from './utils.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -16,6 +15,5 @@ program
     console.log(getDiff(obj1, obj2));
   })
   .helpOption('-h, --help', 'output usage information');
-  
 
 program.parse();
