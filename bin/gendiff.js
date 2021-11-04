@@ -2,7 +2,7 @@
 
 import program from 'commander';
 
-import { getObjectFromPath, getDiff } from './utils.js';
+import { getObjectFromPath, getDiff } from '../src/utils.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
