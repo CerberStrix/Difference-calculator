@@ -1,11 +1,9 @@
 import path from 'path';
-import fs from 'fs';
 import _ from 'lodash';
 
-const getObjectFromPath = (filepath) => {
+const getNormalizePath = (filepath) => {
   const pathOffile = path.isAbsolute(filepath) ? filepath : path.resolve(process.cwd(), filepath);
-  const obj = JSON.parse(fs.readFileSync(pathOffile, 'utf-8'));
-  return obj;
+  return pathOffile;
 };
 
 const getDiff = (obj1, obj2) => {
@@ -50,4 +48,4 @@ const printAnswer = (objOfDiff) => {
   console.log(`{\n${answer.join('\n')}\n}`);
 };
 
-export { getObjectFromPath, getDiff, printAnswer };
+export { getNormalizePath, getDiff, printAnswer };

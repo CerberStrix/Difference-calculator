@@ -1,2 +1,0 @@
-/home/alisher/file1.json
-/home/alisher/file2.json
