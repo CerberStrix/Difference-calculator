@@ -6,9 +6,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c430d2c42220601a8f03/maintainability)](https://codeclimate.com/github/CerberStrix/frontend-project-lvl2/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c430d2c42220601a8f03/test_coverage)](https://codeclimate.com/github/CerberStrix/frontend-project-lvl2/test_coverage)
 
 
-`- Склонируйте созданный репозиторий проекта локально.`
+`- Склонируйте репозиторий проекта локально.`
 
-`- Выполнить установку зависимостей **(make install)**`
+`- Выполните установку зависимостей **(make install)`**
 
 `- Запустить сравнение файлов (команды в описании)`
 
