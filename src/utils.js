@@ -7,45 +7,27 @@ const getNormalizePath = (filepath) => {
 };
 
 const getDiff = (obj1, obj2) => {
-  const allKeys = _.sortBy(_.union([...Object.keys(obj1), ...Object.keys(obj2)]));
-  const cb = (acc, key) => {
+  const allKeys = _.union([...Object.keys(obj1), ...Object.keys(obj2)]);
+  const sortedKeys = _.sortBy(allKeys);
+  return sortedKeys.map((key) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
-    if (_.has(obj1, key) && _.has(obj2, key)) {
-      if (value1 === value2) {
-        acc.push({ name: key, fixed: value1 });
-      } else {
-        acc.push({ name: key, oldValue: value1, newValue: value2 });
-      }
+    if (!_.has(obj1, key)) {
+      return { type: 'added', key, val: value2 };
     }
-    if (_.has(obj1, key) && !_.has(obj2, key)) {
-      acc.push({ name: key, oldValue: value1 });
+    if (!_.has(obj2, key)) {
+      return { type: 'removed', key, val: value1 };
     }
-    if (!_.has(obj1, key) && _.has(obj2, key)) {
-      acc.push({ name: key, newValue: value2 });
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
+      return { type: 'recursion', key, children: getDiff(value1, value2) };
     }
-    return acc;
-  };
-
-  const result = allKeys.reduce(cb, []);
-  return result;
+    if (!_.isEqual(value1, value2)) {
+      return {
+        type: 'updated', key, val1: value1, val2: value2,
+      };
+    }
+    return { type: 'same', key, val: value1 };
+  });
 };
 
-const printAnswer = (objOfDiff) => {
-  const cb = (acc, key) => {
-    if (_.has(key, 'fixed')) {
-      acc.push(`   ${key.name}: ${key.fixed}`);
-    }
-    if ((_.has(key, 'oldValue'))) {
-      acc.push(` - ${key.name}: ${key.oldValue}`);
-    }
-    if ((_.has(key, 'newValue'))) {
-      acc.push(` + ${key.name}: ${key.newValue}`);
-    }
-    return acc;
-  };
-  const answer = objOfDiff.reduce(cb, []);
-  console.log(`{\n${answer.join('\n')}\n}`);
-};
-
-export { getNormalizePath, getDiff, printAnswer };
+export { getNormalizePath, getDiff };

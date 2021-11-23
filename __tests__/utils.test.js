@@ -4,14 +4,7 @@ import { fileURLToPath } from 'url';
 import * as path from 'path';
 import { dirname } from 'path';
 import { getDiff } from '../src/utils.js';
-
-const trullyMass = [
-  { name: 'follow', oldValue: false },
-  { name: 'host', fixed: 'hexlet.io' },
-  { name: 'proxy', oldValue: '123.234.53.22' },
-  { name: 'timeout', oldValue: 50, newValue: 20 },
-  { name: 'verbose', newValue: true },
-];
+import trullyMass from '../__fixtures__/trullyAsnwer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
