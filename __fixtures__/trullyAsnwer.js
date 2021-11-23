@@ -6,7 +6,7 @@ const trullyMass = [
       {
         type: 'added',
         key: 'follow',
-        value: false,
+        val: false,
       },
       {
         type: 'same',
@@ -16,7 +16,7 @@ const trullyMass = [
       {
         type: 'removed',
         key: 'setting2',
-        value: 200,
+        val: 200,
       },
       {
         type: 'updated',
@@ -27,12 +27,12 @@ const trullyMass = [
       {
         type: 'added',
         key: 'setting4',
-        value: 'blah blah',
+        val: 'blah blah',
       },
       {
         type: 'added',
         key: 'setting5',
-        value: {
+        val: {
           key5: 'value5',
         },
       },
@@ -60,7 +60,7 @@ const trullyMass = [
           {
             type: 'added',
             key: 'ops',
-            value: 'vops',
+            val: 'vops',
           },
         ],
       },
@@ -94,7 +94,7 @@ const trullyMass = [
   {
     type: 'removed',
     key: 'group2',
-    value: {
+    val: {
       abc: 12345,
       deep: {
         id: 45,
@@ -104,7 +104,7 @@ const trullyMass = [
   {
     type: 'added',
     key: 'group3',
-    value: {
+    val: {
       deep: {
         id: {
           number: 45,
