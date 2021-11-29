@@ -1,9 +1,10 @@
 import fs from 'fs';
-import { getNormalizePath, getDiff } from './utils.js';
-import stylish from './stylish.js';
+import getNormalizePath from './utils.js';
+import getDiff from './getDiff.js';
+import getFormatter from './formatters/index.js';
 import getParser from './parsers.js';
 
-const getGeneralLogic = (path1, path2, format = 'stylish') => {
+const getGeneralLogic = (path1, path2, formatName = 'stylish') => {
   const normalizePath1 = getNormalizePath(path1);
   const normalizePath2 = getNormalizePath(path2);
 
@@ -13,10 +14,9 @@ const getGeneralLogic = (path1, path2, format = 'stylish') => {
   const obj1 = parserFromFile1(fs.readFileSync(normalizePath1, 'utf-8'));
   const obj2 = parserFromFile2(fs.readFileSync(normalizePath2, 'utf-8'));
 
-  const result = getDiff(obj1, obj2);
-  if (format === 'stylish') {
-    stylish(result);
-  }
+  const diff = getDiff(obj1, obj2);
+  const format = getFormatter(formatName);
+  return format(diff);
 };
 
 export default getGeneralLogic;

@@ -9,7 +9,7 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .option('-V, --version', 'output the version number')
   .action((filepath1, filepath2, { format }) => {
-    getGeneralLogic(filepath1, filepath2, format);
+    console.log(getGeneralLogic(filepath1, filepath2, format));
   })
   .helpOption('-h, --help', 'output usage information');
 

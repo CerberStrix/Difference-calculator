@@ -2,19 +2,24 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 import { dirname } from 'path';
-import { getDiff } from '../src/utils.js';
-import getParser from '../src/parsers.js';
-import trullyMass from '../__fixtures__/trullyAsnwer.js';
+import getGeneralLogic from '../src';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-test('getDiff', () => {
-  const parserFromFile1 = getParser(getFixturePath('file1.json'));
-  const parserFromFile2 = getParser(getFixturePath('file2.json'));
-  const obj1 = parserFromFile1((fs.readFileSync(getFixturePath('file1.json'), 'utf-8')));
-  const obj2 = parserFromFile2((fs.readFileSync(getFixturePath('file2.json'), 'utf-8')));
-  expect(getDiff(obj1, obj2)).toEqual(trullyMass);
+const cases = [
+  ['file3.yml', 'file4.yaml', 'trullyStylish.txt', 'stylish'],
+  ['file1.json', 'file2.json', 'trullyStylish.txt', 'stylish'],
+  ['file1.json', 'file2.json', 'trullyPlain.txt', 'plain'],
+];
+
+test.each(cases)('Compare %s and %s to expect %s in "%s" style', (firstArg, secondArg, expectedResult, format) => {
+  const firstFile = getFixturePath(firstArg);
+  const secondFile = getFixturePath(secondArg);
+  const getResult = readFile(expectedResult);
+  const result = getGeneralLogic(firstFile, secondFile, format);
+  expect(result).toEqual(getResult);
 });
