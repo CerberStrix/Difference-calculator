@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/CerberStrix/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/CerberStrix/frontend-project-lvl2/actions)",
   "type": "module",
-  "main": "bin/gendiff.js",
+  "main": "src/getdiff.js",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
