@@ -7,6 +7,8 @@ const getFormatter = (formatName) => {
       return plain;
     case 'stylish':
       return stylish;
+    case 'json':
+      return JSON.stringify;
     default:
       throw new Error(`${formatName} format is not supported`);
   }

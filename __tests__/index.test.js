@@ -14,6 +14,7 @@ const cases = [
   ['file3.yml', 'file4.yaml', 'trullyStylish.txt', 'stylish'],
   ['file1.json', 'file2.json', 'trullyStylish.txt', 'stylish'],
   ['file1.json', 'file2.json', 'trullyPlain.txt', 'plain'],
+  ['file1.json', 'file2.json', 'trullyJson.txt', 'json'],
 ];
 
 test.each(cases)('Compare %s and %s to expect %s in "%s" style', (firstArg, secondArg, expectedResult, format) => {
