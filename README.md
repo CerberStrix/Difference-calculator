@@ -24,3 +24,6 @@
 `-h, --help output usage information`
 
 `[type] - plain, json, nested - путь к json или yaml файлам`
+
+### **Example of work.**
+[![asciicast](https://asciinema.org/a/d2HQPvekRfk48ivDXmQ0L1kxr.svg)](https://asciinema.org/a/d2HQPvekRfk48ivDXmQ0L1kxr)
