@@ -4,7 +4,7 @@ const getValueFromOutput = (value) => {
   } if (typeof value === 'object') {
     return '[complex value]';
   } if (value === '') {
-    return '\' \'';
+    return '\'\'';
   } if (typeof value === 'boolean') {
     return value;
   }
