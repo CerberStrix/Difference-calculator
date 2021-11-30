@@ -42,9 +42,9 @@ const stylish = (value) => {
         case 'added':
           return `${indendForAdded}${key}: ${stringlify(val, depth + 1)}`;
         case 'removed':
-          return `${indendForRemove}${key}: ${stringlify(val, depth + 1)} `;
+          return `${indendForRemove}${key}: ${stringlify(val, depth + 1)}`;
         case 'same':
-          return `${currentIndent}${key}: ${stringlify(val, depth + 1)} `;
+          return `${currentIndent}${key}: ${stringlify(val, depth + 1)}`;
         case 'updated':
           return `${indendForRemove}${key}: ${stringlify(val1, depth + 1)}\n${indendForAdded}${key}: ${stringlify(val2, depth + 1)}`;
         default:
