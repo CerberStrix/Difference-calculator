@@ -11,6 +11,6 @@ test('getValue', () => {
   expect(getValueFromOutput(null)).toEqual('null');
   expect(getValueFromOutput({ key: Object })).toEqual('[complex value]');
   expect(getValueFromOutput('string')).toEqual("'string'");
-  expect(getValueFromOutput('')).toEqual('\' \'');
+  expect(getValueFromOutput('')).toEqual('\'\'');
   expect(getValueFromOutput(true)).toEqual(true);
 });

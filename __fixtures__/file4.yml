@@ -11,7 +11,7 @@ common:
     doge:
       wow: so much
 group1:
-  foo: null
+  foo: bar
   baz: bars
   nest: str
 group3:
