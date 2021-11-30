@@ -7,7 +7,7 @@ const getValueFromOutput = (value) => {
     return '\'\'';
   } if (typeof value === 'boolean') {
     return value;
-  } if (Number(value)) {
+  } if (typeof value === 'number') {
     return Number(value);
   }
   return `'${value}'`;
