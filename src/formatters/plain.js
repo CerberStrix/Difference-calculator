@@ -1,37 +1,35 @@
-const getValueFromOutput = (value) => {
-  if (value === null) {
+const getValueForOutput = (value) => {
+  if (value === '') {
+    return '\'\'';
+  } if (value === null) {
     return 'null';
+  } if (typeof value === 'string') {
+    return `'${value}'`;
   } if (typeof value === 'object') {
     return '[complex value]';
-  } if (value === '') {
-    return '\'\'';
-  } if (typeof value === 'boolean') {
-    return value;
-  } if (typeof value === 'number') {
-    return Number(value);
   }
-  return `'${value}'`;
+  return value;
 };
 
-const plain = (value) => {
-  const iterPlain = (currentValue, oldPath) => {
-    const lines = currentValue
+const getPlain = (tree) => {
+  const iterPlain = (node, path) => {
+    const lines = node
       .filter(({ type }) => type !== 'same')
       .flatMap((item) => {
         const {
           type, key, children, val, val1, val2,
         } = item;
-        const newPath = [...oldPath, key];
-        const pathFromOutput = newPath.join('.');
+        const newPath = [...path, key];
+        const pathForOutput = newPath.join('.');
         switch (type) {
           case 'recursion':
             return iterPlain(children, newPath);
           case 'added':
-            return `Property '${pathFromOutput}' was added with value: ${getValueFromOutput(val)}`;
+            return `Property '${pathForOutput}' was added with value: ${getValueForOutput(val)}`;
           case 'removed':
-            return `Property '${pathFromOutput}' was removed`;
+            return `Property '${pathForOutput}' was removed`;
           case 'updated':
-            return `Property '${pathFromOutput}' was updated. From ${getValueFromOutput(val1)} to ${getValueFromOutput(val2)}`;
+            return `Property '${pathForOutput}' was updated. From ${getValueForOutput(val1)} to ${getValueForOutput(val2)}`;
           default:
             throw new Error(`Unknown type: '${type}'!`);
         }
@@ -42,8 +40,7 @@ const plain = (value) => {
     ].join('\n');
   };
 
-  const result = iterPlain(value, []);
-  return result;
+  return iterPlain(tree, []);
 };
 
-export { getValueFromOutput, plain };
+export default getPlain;

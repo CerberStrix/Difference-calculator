@@ -1,16 +1,16 @@
-import stylish from './stylish.js';
-import { plain } from './plain.js';
+import getStylish from './stylish.js';
+import getPlain from './plain.js';
 
 const getFormatter = (formatName) => {
   switch (formatName) {
     case 'plain':
-      return plain;
+      return getPlain;
     case 'stylish':
-      return stylish;
+      return getStylish;
     case 'json':
       return JSON.stringify;
     default:
-      throw new Error(`${formatName} format is not supported`);
+      throw new Error(`format "${formatName}" is not supported`);
   }
 };
 

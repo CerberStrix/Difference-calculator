@@ -5,4 +5,6 @@ const getNormalizePath = (filepath) => {
   return pathOffile;
 };
 
-export default getNormalizePath;
+const getTypeOfFile = (pathOfFile) => path.extname(pathOfFile);
+
+export { getNormalizePath, getTypeOfFile };

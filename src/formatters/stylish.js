@@ -1,3 +1,6 @@
+const replacer = ' ';
+const spacesCount = 4;
+
 const stringlify = (node, depth = 1) => {
   if (typeof node !== 'object') {
     return node.toString();
@@ -5,8 +8,6 @@ const stringlify = (node, depth = 1) => {
   if (node === null) {
     return 'null';
   }
-  const replacer = ' ';
-  const spacesCount = 4;
   const indentSize = depth * spacesCount;
   const currentIndent = replacer.repeat(indentSize);
   const bracketIndent = replacer.repeat(indentSize - spacesCount);
@@ -21,10 +22,7 @@ const stringlify = (node, depth = 1) => {
   ].join('\n');
 };
 
-const stylish = (value) => {
-  const replacer = ' ';
-  const spacesCount = 4;
-
+const getStylish = (value) => {
   const iter = (currentValue, depth) => {
     const indentSize = depth * spacesCount;
     const currentIndent = replacer.repeat(indentSize);
@@ -59,8 +57,7 @@ const stylish = (value) => {
     ].join('\n');
   };
 
-  const result = iter(value, 1);
-  return result;
+  return iter(value, 1);
 };
 
-export default stylish;
+export default getStylish;
