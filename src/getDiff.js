@@ -13,7 +13,7 @@ const getDiff = (obj1, obj2) => {
       return { type: 'removed', key, val: value1 };
     }
     if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
-      return { type: 'recursion', key, children: getDiff(value1, value2) };
+      return { type: 'nested', key, children: getDiff(value1, value2) };
     }
     if (!_.isEqual(value1, value2)) {
       return {

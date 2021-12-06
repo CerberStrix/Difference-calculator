@@ -1,4 +1,36 @@
-import { getIndent, stringlify } from '../utils.js';
+const getIndent = (depth, type = 'none') => {
+  const replacer = ' ';
+  const spacesCount = 4;
+  const indentSize = depth * spacesCount;
+  switch (type) {
+    case 'added':
+      return `${replacer.repeat(indentSize - 2)}+ `;
+    case 'removed':
+      return `${replacer.repeat(indentSize - 2)}- `;
+    case 'bracket':
+      return `${replacer.repeat(indentSize - spacesCount)}}`;
+    default:
+      return replacer.repeat(indentSize);
+  }
+};
+
+const stringlify = (node, depth = 1) => {
+  if (typeof node !== 'object') {
+    return node.toString();
+  }
+  if (node === null) {
+    return 'null';
+  }
+  const lines = Object
+    .entries(node)
+    .map(([key, val]) => `${getIndent(depth)}${key}: ${stringlify(val, depth + 1)}`);
+
+  return [
+    '{',
+    ...lines,
+    `${getIndent(depth, 'bracket')}`,
+  ].join('\n');
+};
 
 const getStylish = (value) => {
   const iter = (currentValue, depth) => {
@@ -7,7 +39,7 @@ const getStylish = (value) => {
         type, key, children, val, val1, val2,
       } = item;
       switch (type) {
-        case 'recursion':
+        case 'nested':
           return `${getIndent(depth, type)}${key}: ${iter(children, depth + 1)}`;
         case 'added':
           return `${getIndent(depth, type)}${key}: ${stringlify(val, depth + 1)}`;
@@ -25,7 +57,7 @@ const getStylish = (value) => {
     return [
       '{',
       ...lines,
-      `${getIndent(depth, 'bracket')}}`,
+      `${getIndent(depth, 'bracket')}`,
     ].join('\n');
   };
 

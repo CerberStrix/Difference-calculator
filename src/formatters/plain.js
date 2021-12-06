@@ -22,7 +22,7 @@ const getPlain = (tree) => {
         const newPath = [...path, key];
         const pathForOutput = newPath.join('.');
         switch (type) {
-          case 'recursion':
+          case 'nested':
             return iterPlain(children, newPath);
           case 'added':
             return `Property '${pathForOutput}' was added with value: ${getValueForOutput(val)}`;

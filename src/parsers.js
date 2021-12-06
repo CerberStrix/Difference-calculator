@@ -1,16 +1,16 @@
 import yaml from 'js-yaml';
 
-const getParser = (type) => {
+const parse = (type, data) => {
   switch (type) {
-    case '.yaml':
-      return yaml.load;
-    case '.yml':
-      return yaml.load;
-    case '.json':
-      return JSON.parse;
+    case 'yaml':
+      return yaml.load(data);
+    case 'yml':
+      return yaml.load(data);
+    case 'json':
+      return JSON.parse(data);
     default:
       throw new Error(`${type} format is not supported`);
   }
 };
 
-export default getParser;
+export default parse;

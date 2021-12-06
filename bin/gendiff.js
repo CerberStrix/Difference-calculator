@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import program from 'commander';
-import getGeneralLogic from '../src/index.js';
+import genDiff from '../src/index.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -9,7 +9,7 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .option('-V, --version', 'output the version number')
   .action((filepath1, filepath2, { format }) => {
-    console.log(getGeneralLogic(filepath1, filepath2, format));
+    console.log(genDiff(filepath1, filepath2, format));
   })
   .helpOption('-h, --help', 'output usage information');
 
